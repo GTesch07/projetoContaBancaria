@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class VerificarConta {
@@ -31,8 +32,14 @@ public class VerificarConta {
 
         }
         if(loginBemSucedido){
-            System.out.println("Bem vindo " + login + "!");
-            System.out.println("*****************************************");
+            String bemVindo =String.format("""
+                    
+                    *****************************************
+                    Bem vindo %s!
+                    *****************************************
+                    
+                    """,login);
+            System.out.println(bemVindo);
 
             String detalheDaConta = String.format("""
                 Dados iniciais do cliente:
@@ -44,6 +51,50 @@ public class VerificarConta {
 
             System.out.println(detalheDaConta);
             System.out.println("*****************************************");
+
+            while(true){
+                String operacao = String.format("""
+                    
+                    Operações
+                    
+                    1- Consultar saldo
+                    2- Receber valor
+                    3- Transferir valor
+                    4- Sair
+                    
+                    """);
+
+                System.out.println(operacao);
+                System.out.print("Digite a opção desejada: ");
+                int opcaoOperacao = scanner.nextInt();
+
+                switch (opcaoOperacao){
+                    case 1:
+                        System.out.println("O saldo atual é R$ " + saldo+"\n");
+                        break;
+                    case 2:
+                        System.out.print("Informe o valor a receber: ");
+                        double valorRecebido = scanner.nextDouble();
+                        saldo += valorRecebido;
+                        System.out.println("Saldo atualizado R$ "+ saldo);
+                        break;
+                    case 3:
+                        System.out.print("Informe o valor a transferir: ");
+                        double valorTransferencia = scanner.nextDouble();
+                        if (valorTransferencia > saldo){
+                            System.out.println("Saldo insuficiente!");
+                        }else {
+                            saldo -= valorTransferencia;
+                            System.out.println("Saldo atualizado R$ "+ saldo);
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Saindo...");
+                        return;
+                    default:
+                        System.out.println("Opção inválida. Tente novamente.");
+                }
+            }
 
         } else {
             System.out.println("Conta bloqueada! Favor, entrar em contato com o suporte.");

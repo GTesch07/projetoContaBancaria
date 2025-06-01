@@ -90,7 +90,7 @@ public class Conta {
                         }else {
                             info.setSaldo(info.getSaldo()-valorTransferencia);
                             info.cobrarTarifaMensal();
-                            System.out.println("Saldo atualizado R$ "+ info.getSaldo());
+                            System.out.printf("Saldo atualizado R$ %.2f\n",info.getSaldo());
                         }
                         break;
                     case 4:

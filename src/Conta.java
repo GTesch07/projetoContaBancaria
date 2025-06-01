@@ -1,22 +1,17 @@
-import tesch.guilherme.contabancaria.modelos.InformacoesConta;
+import tesch.guilherme.contabancaria.modelos.ContaCorrente;
 
 import java.util.Scanner;
 
 public class Conta {
     public static void main(String[] args) {
         Scanner scanner = new Scanner (System.in);
-        InformacoesConta info = new InformacoesConta();
+       // InformacoesConta info = new InformacoesConta();
+        ContaCorrente info = new ContaCorrente();
 
         System.out.println("*****************************************");
         System.out.println(" - Faça login na sua conta bancaria - ");
         System.out.print("Informe seu nome: ");
         String login = scanner.nextLine();
-
-        //       String tipoConta = "Corrente";
-        //       double saldo = 2500;
-        //       int senha = 1234;
-//        int tentativasLogin = 3;
-        //       boolean loginBemSucedido = false;
 
         info.setTipoConta("Corrente");
         info.setSaldo(2500);
@@ -94,6 +89,7 @@ public class Conta {
                             System.out.println("Saldo insuficiente!");
                         }else {
                             info.setSaldo(info.getSaldo()-valorTransferencia);
+                            info.cobrarTarifaMensal();
                             System.out.println("Saldo atualizado R$ "+ info.getSaldo());
                         }
                         break;

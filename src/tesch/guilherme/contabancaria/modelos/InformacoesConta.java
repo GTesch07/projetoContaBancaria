@@ -1,8 +1,8 @@
 package tesch.guilherme.contabancaria.modelos;
 
 public class InformacoesConta {
-    private String tipoConta;
-    private double saldo;
+    protected String tipoConta;
+    protected double saldo;
     private int senha;
     private int tentativasLogin;
     private boolean loginBemSucedido;

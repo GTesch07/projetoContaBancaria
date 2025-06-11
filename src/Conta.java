@@ -1,5 +1,6 @@
 import tesch.guilherme.contabancaria.modelos.ContaCorrente;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Conta {
@@ -64,7 +65,8 @@ public class Conta {
                     1- Consultar saldo
                     2- Receber valor
                     3- Transferir valor
-                    4- Sair
+                    4- Ver conta com maior saldo
+                    5- Sair
                     
                     """;
 
@@ -94,6 +96,33 @@ public class Conta {
                         }
                         break;
                     case 4:
+                        ContaCorrente conta1 = new ContaCorrente();
+                        conta1.setTipoConta("Corrente");
+                        conta1.setSaldo(3200);
+
+                        ContaCorrente conta2 = new ContaCorrente();
+                        conta2.setTipoConta("Corrente");
+                        conta2.setSaldo(1500);
+
+                        ContaCorrente conta3 = new ContaCorrente();
+                        conta3.setTipoConta("Corrente");
+                        conta3.setSaldo(2750);
+
+                        ArrayList<ContaCorrente> contas = new ArrayList<>();
+                        contas.add(info);
+                        contas.add(conta1);
+                        contas.add(conta2);
+                        contas.add(conta3);
+
+                        ContaCorrente contaMaiorSaldo = contas.get(0);
+                        for (ContaCorrente conta : contas){
+                            if (conta.getSaldo() > contaMaiorSaldo.getSaldo()){
+                                contaMaiorSaldo = conta;
+                            }
+                        }
+                        System.out.printf("A conta com maior saldo tem R$ %.2f\n\n", contaMaiorSaldo.getSaldo());
+                        break;
+                    case 5:
                         System.out.println("Saindo...");
                         return;
                     default:
